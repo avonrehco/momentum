@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("./img/bg.jpg");
+    font-family: "Montserrat", sans-serif;
+    color: #fff;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+header {
+    height: 11vh;
+}
+
+header .nav {
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+header .nav .focus {
+    user-select: none;
+    text-align: center;
+    cursor: pointer;
+    padding: 10px;
+}
+
+header .nav .nav-icon {
+    font-size: 30px;
+}
+
+header .nav .weather {
+    text-align: right;
+    cursor: pointer;
+    user-select: none;
+    padding: 10px;
+    transition: background-color ease;
+}
+
+header .nav  .weather:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+}
+
+header .nav .weather .degrees-icon {
+    display: flex;
+    align-items: center;
+}
+
+header .nav .weather .degrees-icon .degrees {
+    padding-left: 5px;
+}
+
+clock {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 20px;
+    height: 66vh;
+    justify-content: space-between;
+}
+
+clock .time {
+    user-select: none;
+    font-size: 100px;
+    margin-top: 80px;
+}
+
+clock .date {
+    user-select: none;
+    font-size: 30px;
+}
+
+clock .quote {
+    user-select: none;
+    font-size: 30px;
+}
+
+footer {
+    height: 8vh;
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+footer .footer-icon {
+    font-size: 30px;
+}
+
+footer .change-bg {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    user-select: none;
+}
+
+footer .tasks {
+    cursor: pointer;
+    user-select: none;
+    text-align: center;
+    padding: 0px 10px 0px 10px;
+}
