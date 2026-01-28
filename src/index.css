@@ -61,9 +61,34 @@ clock {
 }
 
 clock .time {
+    display: flex;
+    align-items: center;
+    text-align: center;
     user-select: none;
     font-size: 100px;
     margin-top: 80px;
+}
+
+clock .time .time-clock {
+    align-self: center                                                                                    ;
+}
+
+clock .time:hover .time-menu {
+    display: block;
+}
+
+clock .time-menu {
+    display: none;
+    font-size: 20px;
+    padding: 6px;
+    margin-left: 50px;
+    opacity: 50%;
+    transition: background-color ease;;
+}
+
+clock .time-menu:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
 }
 
 clock .date {
@@ -89,8 +114,7 @@ footer .footer-icon {
 
 footer .change-bg {
     display: flex;
-    align-items: center;
-    padding: 10px;
+    align-items: flex-end;
     cursor: pointer;
     user-select: none;
 }
