@@ -1,11 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
 body {
     background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("./img/bg.jpg");
     font-family: "Montserrat", sans-serif;
     color: #fff;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 15px;
+    height: 98vh;
+    margin: 0;
+    user-select: none;
 }
 
 header {
@@ -13,13 +16,12 @@ header {
 }
 
 header .nav {
-    margin: 20px;
+    margin: 10px;
     display: flex;
     justify-content: space-between;
 }
 
 header .nav .focus {
-    user-select: none;
     text-align: center;
     cursor: pointer;
     padding: 10px;
@@ -32,7 +34,6 @@ header .nav .nav-icon {
 header .nav .weather {
     text-align: right;
     cursor: pointer;
-    user-select: none;
     padding: 10px;
     transition: background-color ease;
 }
@@ -55,22 +56,17 @@ clock {
     display: flex;
     flex-direction: column;
     text-align: center;
-    margin: 20px;
-    height: 66vh;
-    justify-content: space-between;
+    margin: 10px;
+    height: 73vh;
+    justify-content: center;
 }
 
 clock .time {
     display: flex;
     align-items: center;
-    text-align: center;
-    user-select: none;
+    align-content: space-around;
     font-size: 100px;
-    margin-top: 80px;
-}
-
-clock .time .time-clock {
-    align-self: center                                                                                    ;
+    justify-content: center;
 }
 
 clock .time:hover .time-menu {
@@ -92,20 +88,15 @@ clock .time-menu:hover {
 }
 
 clock .date {
-    user-select: none;
-    font-size: 30px;
-}
-
-clock .quote {
-    user-select: none;
     font-size: 30px;
 }
 
 footer {
     height: 8vh;
-    margin: 20px;
+    margin: 10px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 footer .footer-icon {
@@ -116,12 +107,10 @@ footer .change-bg {
     display: flex;
     align-items: flex-end;
     cursor: pointer;
-    user-select: none;
 }
 
 footer .tasks {
     cursor: pointer;
-    user-select: none;
     text-align: center;
     padding: 0px 10px 0px 10px;
 }

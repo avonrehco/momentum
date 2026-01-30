@@ -11,14 +11,11 @@ function Clock() {
 
   return (
     <clock>
-        <div>
-            <div className='time'>
-                <div className='time-clock'>{time.getHours()}:{getRightMinutes(time.getMinutes())}</div>
-                <GoKebabHorizontal className='time-menu'/>
-            </div>
-            <div className='date'>{getWeekDay(time.getDay())}, {getMonthName(time.getMonth())} {time.getDate()}</div>
+        <div className='time'>
+            <div className='time-clock'>{time.getHours()}:{getRightMinutes(time.getMinutes())}</div>
+            <GoKebabHorizontal className='time-menu'/>
         </div>
-        <div className='quote'>Be the flame, not the moth</div>
+        <div className='date'>{getWeekDay(time.getDay())}, {getMonthName(time.getMonth())} {time.getDate()}</div>
     </clock>
   )
 }
