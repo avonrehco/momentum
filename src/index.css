@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
 body {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("./img/bg.jpg");
     font-family: "Montserrat", sans-serif;
     color: #fff;
     font-weight: 500;
@@ -57,7 +56,7 @@ clock {
     flex-direction: column;
     text-align: center;
     margin: 10px;
-    height: 76vh;
+    height: 75vh;
     justify-content: center;
 }
 
@@ -184,44 +183,210 @@ clock .date {
 
 footer {
     height: 8vh;
-    margin: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    margin: 10px 20px 20px 20px;
+    
+    display: grid;
+    grid-template-columns: 65px auto 83px;
+    grid-template-areas: "gallery quote tasks";
+
+    align-items: end;
 }
 
 footer .footer-icon {
     font-size: 30px;
-}
-
-footer .change-bg {
-    display: flex;
-    align-items: flex-end;
     cursor: pointer;
 }
 
-footer .gallery {
-    background-color: #0f0f0fd9;
-    position: absolute;
-    bottom: 35px;
-    width: 100px;
-    height: 100px;
+footer .change-bg {
+    text-align: left;
+    grid-area: gallery;
+    position: relative;
 }
 
-footer .gallery::after {
+.gallery {
+    grid-area: gallery;
+    background-color: #0f0f0fd9;
+    width: 560px;
+    height: 420px;
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    margin-bottom: 10px;
+
+    display: grid;
+    grid-template: 70px 70px 280px / repeat(4, 1fr);
+    padding: 30px;
+}
+
+.gallery::after {
     content: "";
     width: 0;
     height: 0;
     position: absolute;
-    margin-left: -10px;
-    bottom: -5px;
+    left: 4px;
+    top: 100%;
     border-width: 6px 6px 0 6px;
     border-style: solid;
     border-color: #0f0f0fd9 transparent;
 }
 
-footer .tasks {
+.gallery .gallery-head {
+    grid-column: span 4;
+}
+
+.gallery .gallery-head .gallery-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.gallery .gallery-head .gallery-desc {
+    color: #ffffff80;
+}
+
+.gallery .gallery-menu {
+    grid-column: span 4;
+    display: inline-flex;
     cursor: pointer;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 25px;
+}
+
+.gallery .categories {
+    display: flex;
+}
+
+.gallery .categories div{
+    display: inline-flex;
+    color: #ffffff80;
+    transition: color ease;
+    padding-right: 25px;
+}
+
+.gallery .categories div:hover {
+    color: #fff;
+}
+
+.gallery .categories .category.active {
+    color: #fff;
+}
+
+.gallery .add-btn{
+    background-color: #fff;
+    color: #0f0f0fd9;
+    padding: 10px;
+    border-radius: 30px;
+    height: 20px;
+    width: 115px;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.gallery .gallery-photos {
+    grid-column: span 4;
+    display: grid;
+    grid-template: repeat(3, 80px) / repeat(4, 1fr);
+    gap: 20px;
+}
+
+.gallery .gallery-photos img {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.gallery .gallery-photos .photo {
+    display: flex;
+    justify-content: end;
+    transition: filter ease;
+}
+
+.gallery .gallery-photos .photo:hover img{
+    -webkit-filter: brightness(70%);
+    filter: brightness(70%);
+    z-index: 1;
+}
+
+.gallery .gallery-photos .photo.currentbg {
+    outline: 2px solid #fff;
+    width: 100%;
+}
+
+.gallery .gallery-photos .photo .like,
+.gallery .gallery-photos .photo .unlike.active {
+    display: none;
+    font-size: 20px;
+    color: #ffffff80;
+    cursor: pointer;
+    transition: color ease;
+    position: absolute;
+    padding: 5px 30px 5px 5px;
+    z-index: 2;
+}
+
+.gallery .gallery-photos .photo .like:hover,
+.gallery .gallery-photos .photo .unlike.active:hover,
+.gallery .gallery-photos .photo .setBg:hover {
+    color: #fff;
+}
+
+.gallery .gallery-photos .photo .setBg.active {
+    color: #fff;
+    display: block;
+}
+
+.gallery .gallery-photos .photo .setBg {
+    display: none;
+    font-size: 20px;
+    color: #ffffff80;
+    cursor: pointer;
+    transition: color ease;
+    position: absolute;
+    padding: 5px;
+    z-index: 3;
+}
+
+.gallery .gallery-photos .photo:hover .setBg,
+.gallery .gallery-photos .photo:hover .like,
+.gallery .gallery-photos .photo:hover .unlike.active {
+    display: block;
+}
+
+.gallery .gallery-photos .photo .like.noactive,
+.gallery .gallery-photos .photo .unlike {
+    display: none;
+}
+
+.gallery .gallery-photos .empty {
+    display: flex;
+    width: 560px;
+    height: 280px;
     text-align: center;
-    padding: 0px 10px 0px 10px;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.gallery .gallery-photos .empty h2 {
+    font-size: 16px;
+}
+
+.gallery .gallery-photos .empty h2,
+.gallery .gallery-photos .empty p{
+    margin: 0;
+}
+
+footer .quote {
+    text-align: center;
+    padding-bottom: 7px;
+}
+
+footer .tasks {
+    margin-left: auto;
+}
+
+footer .tasks .full-icon {
+    text-align: center;
 }
