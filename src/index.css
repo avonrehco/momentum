@@ -15,7 +15,7 @@ header {
 }
 
 header .nav {
-    margin: 10px;
+    margin: 10px 30px 20px 30px;
     display: flex;
     justify-content: space-between;
 }
@@ -61,11 +61,11 @@ clock {
 }
 
 clock .time {
-    display: grid;
+    display: flex;
     font-size: 125px;
-    grid-template-columns: 1fr auto 1fr;
+    justify-content: center;
     align-items: center;
-    grid-template-areas: ". time menu";
+    position: relative;
 }
 
 clock .time:hover .time-menu,
@@ -74,31 +74,31 @@ clock .time-menu.active {
 }
 
 clock .time-menu {
+    position: absolute;
     display: none;
     font-size: 20px;
     padding: 6px;
-    margin-left: 15px;
+    margin-left: 20px;
+    top: 60px;
     opacity: 50%;
     transition: background-color ease;
-    grid-area: menu;
-    position: relative;
 }
 
-clock .time-clock {
-    grid-area: time;
+clock .time-menu:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
 }
 
 clock .clock-menu {
-    grid-area: menu;
     background-color: #0f0f0fd9;
     border-radius: 5px;
     font-size: 12px;
     padding: 10px 20px 10px 20px;
+    margin: 18px 0 0 20px;
     justify-content: space-between;
     align-items: center;
     display: flex;
-
-    margin: 80px 0 0 15px;
+    position: absolute;
 
     width: 140px;
     height: 25px;
@@ -116,25 +116,23 @@ clock .clock-menu::after {
     border-color: #0f0f0fd9 transparent;
 }
 
-clock .time-menu:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-    border-radius: 50%;
-}
-
-clock .clock-menu .switch {
+clock .clock-menu .switch,
+.todo-list .todo-head .todo-menu-box .switch {
     position: relative;
     display: inline-block;
     width: 25px;
     height: 14px;
 }
 
-clock .clock-menu .switch input {
+clock .clock-menu .switch input,
+.todo-list .todo-head .todo-menu-box .switch input {
     opacity: 0;
     width: 0;
     height: 0;
 }
 
-clock .clock-menu .slider {
+clock .clock-menu .slider,
+.todo-list .todo-head .todo-menu-box .switch .slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -148,7 +146,8 @@ clock .clock-menu .slider {
     border-radius: 30px;
 }
 
-clock .clock-menu .slider:before {
+clock .clock-menu .slider:before,
+.todo-list .todo-head .todo-menu-box .switch .slider:before {
     position: absolute;
     content: "";
     height: 10px;
@@ -161,16 +160,19 @@ clock .clock-menu .slider:before {
     transition: .4s;
 }
 
-clock .clock-menu .switch input:checked + .slider {
+clock .clock-menu .switch input:checked + .slider,
+.todo-list .todo-head .todo-menu-box .switch input:checked + .slider {
     background-color: #ffffffd9;
     border: 1px solid #ffffffd9;
 }
 
-clock .clock-menu .switch input:focus + .slider {
+clock .clock-menu .switch input:focus + .slider,
+.todo-list .todo-head .todo-menu-box .switch input:focus + .slider {
     box-shadow: 0 0 1px #ffffffd9;
 }
 
-clock .clock-menu .switch input:checked + .slider:before {
+clock .clock-menu .switch input:checked + .slider:before,
+.todo-list .todo-head .todo-menu-box .switch input:checked + .slider:before {
     -webkit-transform: translateX(11px);
     -ms-transform: translateX(11px);
     transform: translateX(11px);
@@ -205,6 +207,7 @@ footer .change-bg {
 
 .gallery {
     grid-area: gallery;
+    border-radius: 10px;
     background-color: #0f0f0fd9;
     width: 560px;
     height: 420px;
@@ -223,7 +226,7 @@ footer .change-bg {
     width: 0;
     height: 0;
     position: absolute;
-    left: 4px;
+    left: 10px;
     top: 100%;
     border-width: 6px 6px 0 6px;
     border-style: solid;
@@ -283,6 +286,12 @@ footer .change-bg {
     font-size: 14px;
     display: flex;
     align-items: center;
+    transition: filter ease;
+}
+
+.gallery .add-btn:hover {
+    -webkit-filter: brightness(90%);
+    filter: brightness(90%);
 }
 
 .gallery .gallery-photos {
@@ -384,9 +393,290 @@ footer .quote {
 }
 
 footer .tasks {
+    grid-area: tasks;
+    position: relative;
     margin-left: auto;
 }
 
 footer .tasks .full-icon {
     text-align: center;
+}
+
+.todo-list {
+    grid-area: tasks;
+    border-radius: 10px;
+    background-color: #0f0f0fd9;
+    width: 360px;
+    min-height: 160px;
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    margin-bottom: 10px;
+
+    display: grid;
+    grid-template: 40px 1fr 40px / 1fr;
+}
+
+.todo-list::after {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    right: 15px;
+    top: 100%;
+    border-width: 6px 6px 0 6px;
+    border-style: solid;
+    border-color: #0f0f0fd9 transparent;
+}
+
+.todo-list .todo-head {
+    padding: 30px;
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+.todo-list .todo-head .inbox {
+    display: flex;
+}
+
+.todo-list .todo-head .inbox .title{
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+.todo-list .todo-head .inbox .dropdown-menu {
+    margin-top: 2px;
+    font-size: 12px;
+    transition: background-color ease;
+    padding: 4px;
+    cursor: pointer;
+    position: relative;
+}
+
+.todo-list .todo-head .inbox .dropdown-menu:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+}
+
+.todo-list .todo-head .inbox .inbox-menu {
+    background-color: #343333;
+    position: absolute;
+    left: 30px;
+    margin-top: 5px;
+    border-radius: 10px;
+    font-size: 15px;
+    z-index: 10;
+}
+
+.todo-list .todo-head .inbox .inbox-menu li {
+    padding: 10px 30px 10px 20px;
+}
+
+.todo-list .todo-head .inbox .inbox-menu span:nth-child(2n) {
+    color: #ffffff80;
+    font-size: 13px;
+    padding-left: 10px;
+}
+
+.todo-list .todo-head .todo-menu {
+    transition: background-color ease;
+    padding: 6px;
+    cursor: pointer;
+}
+
+.todo-list .todo-head .todo-menu:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+}
+
+.todo-list .todo-head .todo-menu-box {
+    position: absolute;
+    background-color: #343333;
+    padding: 15px;
+    right: 30px;
+    border-radius: 10px;
+    z-index: 10;
+    display: inline-flex;
+    top: 60px;
+    align-items: center;
+    font-size: 15px;
+}
+
+.todo-list .todo-head .todo-menu-box .stay-open-text {
+    padding-right: 10px;
+}
+
+.todo-list .todo-field .empty-todo {
+    padding: 30px;
+    display: flex;
+    height: 150px;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.todo-list .todo-field .empty-todo h2{
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.todo-list .todo-field .empty-todo .new-task-btn {
+    padding: 10px;
+    border-radius: 30px;
+    background-color: #fff;
+    color: #0f0f0fd9;
+    font-size: 14px;
+    font-weight: 600;
+    height: 20px;
+    width: 115px;
+    text-align: center;
+    transition: filter ease;
+    cursor: pointer;
+}
+
+.todo-list .todo-field .empty-todo .new-task-btn:hover {
+    -webkit-filter: brightness(90%);
+    filter: brightness(90%);
+}
+
+.todo-list .todo-field .empty-todo .new-task-btn.noactive {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.todo-list .todo-field .new-task {
+    background: none;
+    outline: none;
+    border: none;
+    color: #fff;
+    font-size: 15px;
+    bottom: 0;
+    margin: 0 30px 30px 30px;
+    position: absolute;
+}
+
+.todo-list .todo-field .new-task::placeholder {
+    color: #ffffff80;
+    opacity: 0.6;
+}
+
+.todo-list .todo-field .task-list .task-cell:first-child{
+    margin-top: 30px;
+}
+
+.todo-list .todo-field .task-list .task-cell {
+    padding: 0 30px 0 30px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    
+    min-height: 25px;
+    align-items: center;
+}
+
+.todo-list .todo-field .task-list .task-cell.active {
+    background-color: #b7b5b540;
+}
+
+.todo-list .todo-field .task-list .task-cell:last-child{
+    margin-bottom: 30px;
+}
+
+.todo-list .todo-field .task-list .created-task {
+    display: inline-flex;
+}
+
+.todo-list .todo-field .task-list .created-task .task-edit-input {
+    background: none;
+    outline: none;
+    border: none;
+    color: #ffffff80;
+    font-size: 16px;
+}
+
+.todo-list .todo-field .task-list .task-menu {
+    padding: 5px;
+    display: none;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color ease;
+    right: 32px;
+    position: absolute;
+}
+
+.todo-list .todo-field .task-list .task-menu:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+}
+
+.todo-list .todo-field .task-cell:hover .task-menu {
+    display: block;
+}
+
+ input {
+    margin-right: 10px;
+    font-weight: 500;
+    font-family: "Montserrat", sans-serif;
+}
+
+.todo-list .todo-field .created-task input:checked + .task-text {
+    text-decoration: line-through;
+    color: #ffffff80;
+}
+
+.todo-list .todo-field .task-cell .task-menu-list {
+    position: absolute;
+    right: 55px;
+    background-color: #343333;
+    display: none;
+    width: 100px;
+    border-radius: 10px;
+    font-size: 12px;
+    top: 15px;
+    z-index: 10;
+}
+
+
+.todo-list .todo-field .task-cell .task-menu-list ul,
+.todo-list .todo-head .inbox .inbox-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.todo-list .todo-field .task-cell .task-menu-list li {
+    border-bottom: 1.5px solid #545454;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color ease;
+}
+
+.todo-list .todo-field .task-cell .task-menu-list li:hover,
+.todo-list .todo-head .inbox .inbox-menu li:hover {
+    background-color: #b7b5b540;
+}
+
+.todo-list .todo-field .task-cell .task-menu-list li:first-child:hover,
+.todo-list .todo-head .inbox .inbox-menu li:first-child:hover {
+    border-radius: 10px 10px 0 0;
+}
+
+.todo-list .todo-field .task-cell .task-menu-list li:last-child:hover,
+.todo-list .todo-head .inbox .inbox-menu li:last-child:hover {
+    border-radius: 0 0 10px 10px;
+}
+
+.todo-list .todo-field .task-cell .task-menu-list li:last-child {
+    border-bottom: none;
+}
+
+.todo-list .todo-field .task-cell .task-menu-list.active-top {
+    display: block;
+}
+
+.todo-list .todo-field .task-cell .task-menu-list.active-bottom {
+    display: block;
+    top: auto;
+    bottom: 10px;
 }

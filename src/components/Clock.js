@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { GoKebabHorizontal } from "react-icons/go";
+import ClickOutside from './ClickOutside';
 
 function Clock() {
 
@@ -17,18 +18,18 @@ function Clock() {
     <clock>
         <div className='time'>
             <div className='time-clock'>{getTimeFormat(time.getHours(), toggled)}:{getRightMinutes(time.getMinutes())}</div>
-            <GoKebabHorizontal onClick  = {() => setMenuOpen(menuOpen = !menuOpen)} className={`time-menu ${menuOpen && "active"}`} />
-
-            {menuOpen && (
-            <div className='clock-menu'>
-                <div className='12-clock'>12-hour clock</div>
-                <label className = 'switch'>
-                    <input type='checkbox' checked = {toggled} onChange = {() => setToggled(!toggled)}/>
-                    <span className='slider'></span>
-                </label>
-            </div>
-        )}
-
+            <ClickOutside onClickOutside={() => setMenuOpen(false)}>
+                <GoKebabHorizontal onClick  = {() => setMenuOpen(menuOpen = !menuOpen)} className={`time-menu ${menuOpen && "active"}`} />
+                {menuOpen && (
+                <div className='clock-menu'>
+                    <div className='12-clock'>12-hour clock</div>
+                    <label className = 'switch'>
+                        <input type='checkbox' checked = {toggled} onChange = {() => setToggled(!toggled)}/>
+                        <span className='slider'></span>
+                    </label>
+                </div>
+                )}
+            </ClickOutside>
         </div>
         <div className='date'>{getWeekDay(time.getDay())}, {getMonthName(time.getMonth())} {time.getDate()}</div>
     </clock>

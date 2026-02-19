@@ -67,6 +67,7 @@ export class App extends Component {
       currentbg: 1,
       shownPhotos: [],
       activeCategory: 'all',
+      tasks: [],
     }
     this.state.shownPhotos = this.state.photos
     this.changeBg = this.changeBg.bind(this)
@@ -75,6 +76,11 @@ export class App extends Component {
     this.addToFavorite = this.addToFavorite.bind(this)
     this.deleteFromFavorite = this.deleteFromFavorite.bind(this)
     this.changeCategory = this.changeCategory.bind(this)
+    this.addNewTask = this.addNewTask.bind(this)
+    this.checkTask = this.checkTask.bind(this)
+    this.deleteTask = this.deleteTask.bind(this)
+    this.duplicateTask = this.duplicateTask.bind(this)
+    this.editTask = this.editTask.bind(this)
   }
 
   componentDidMount() {
@@ -96,7 +102,21 @@ export class App extends Component {
       <div className='wrapper'>
         <Header/>
         <Clock />
-        <Footer photos = {this.state.shownPhotos} currentbg = {this.state.currentbg} onChangeBg = {this.changeBg} onAddPhoto = {this.addPhoto} onAddToFavorite = {this.addToFavorite} onDeleteFromFavorite = {this.deleteFromFavorite} onChangeCategory = {this.changeCategory} activeCategory = {this.state.activeCategory}/> 
+        <Footer 
+          onDuplicateTask = {this.duplicateTask} 
+          onDeleteTask = {this.deleteTask} 
+          onEditTask = {this.editTask}
+          onCheckTask = {this.checkTask} 
+          onAddNewTask = {this.addNewTask} 
+          tasks = {this.state.tasks} 
+          photos = {this.state.shownPhotos} 
+          currentbg = {this.state.currentbg} 
+          onChangeBg = {this.changeBg} 
+          onAddPhoto = {this.addPhoto} 
+          onAddToFavorite = {this.addToFavorite} 
+          onDeleteFromFavorite = {this.deleteFromFavorite} 
+          onChangeCategory = {this.changeCategory} 
+          activeCategory = {this.state.activeCategory}/> 
       </div>
     )
   }
@@ -157,6 +177,44 @@ export class App extends Component {
 
   addPhoto(newImg){
     this.setState({photos: [...this.state.photos, newImg]}, () => {this.changeCategory(this.state.activeCategory)})
+  }
+
+  addNewTask(task) {
+    task.id = Date.now() + '-' + Math.floor(Math.random() * 1000)
+    let isRepeated = this.state.tasks.filter(t => t.text === task.text)
+    console.log(isRepeated)
+    if(isRepeated.length > 0){
+      task.isCopy = `(${isRepeated.length})`
+    }
+    this.setState({tasks: [...this.state.tasks, task]})
+  }
+
+  checkTask(task) {
+    this.setState(prevState => ({
+      tasks: prevState.tasks.map (t =>
+        t.id === task.id ? {...t, isCompleted: !t.isCompleted} : t
+      )
+    }))
+  }
+
+  deleteTask(id) {
+    this.setState({tasks: this.state.tasks.filter(task => task.id !== id)})
+  }
+
+  duplicateTask(task) {
+    const newTask = {
+        text: `${task.text} (copy)`,
+        isCompleted: task.isCompleted
+    }
+    this.addNewTask(newTask)
+  }
+
+  editTask(id, newText) {
+    this.setState(prevState => ({
+      tasks: prevState.tasks.map(task =>
+        task.id === id ? {...task, text: newText} : task
+      )
+    }))
   }
 }
 
