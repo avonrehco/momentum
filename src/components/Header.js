@@ -13,7 +13,7 @@ export default function Header() {
     const [cityName, setCityName] = useState('')
     let [weatherOpen, setWeatherOpen] = useState(false)
     
-    const API_KEY = process.env.REACT_APP_API_KEY
+    const API_KEY = process.env.REACT_APP_WEATHER_API_KEY
 
     useEffect(() => {
         if(navigator.geolocation) {

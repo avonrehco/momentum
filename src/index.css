@@ -85,6 +85,15 @@ header .weather-box .weather-header .weather-city {
     align-items: center;
 }
 
+header .weather-box .weather-header .location-input-container {
+    z-index: 5;
+    position: absolute;
+    width: 400px;
+    height: 30px;
+    display: flex;
+    align-items: stretch;
+}
+
 header .weather-box .weather-body {
     display: inline-flex;
     flex-direction: column;
