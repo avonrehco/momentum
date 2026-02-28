@@ -11,30 +11,9 @@ export default function Header() {
     const [error, setError] = useState(null)
     const [location, setLocation] = useState({lat: null, lon: null})
     const [cityName, setCityName] = useState('')
-    const [searchQuery, setSearchQuery] = useState('')
-    const API_KEY = 'fc74f7b6ab54d7a3876e72eb79562449'
-
     let [weatherOpen, setWeatherOpen] = useState(false)
-
-    const handleLocationSearch = async (e) => {
-        const query = e.target.value
-        setSearchQuery(query)
-
-        if(query.length > 3) {
-            try {
-            const response = await fetch(
-                `http://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=5&appid=${props.API_KEY}`
-            )
-
-            const data = await response.json()
-            setSuggestions(data)
-            } catch (error) {
-            console.error('Error fetching locations:', error)
-            }
-        } else {
-            setSuggestions([])
-        } 
-    }
+    
+    const API_KEY = process.env.REACT_APP_API_KEY
 
     useEffect(() => {
         if(navigator.geolocation) {
@@ -114,7 +93,7 @@ export default function Header() {
                     <div className='city'>{cityName}</div>
                 </div>
                 {weatherOpen && (
-                    <Weather className = 'weather-widget' onGetWeatherIcon = {getWeatherIcon} weatherData = {weatherData}/>
+                    <Weather API_KEY = {API_KEY} className = 'weather-widget' onGetWeatherIcon = {getWeatherIcon} weatherData = {weatherData}/>
                 )} 
             </ClickOutside>
         </header>

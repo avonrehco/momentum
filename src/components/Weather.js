@@ -8,6 +8,27 @@ export default function Weather(props) {
 
   let [locationInput, setLocationInput] = useState(false)
   const [suggestions, setSuggestions] = useState([])
+  const [searchQuery, setSearchQuery] = useState('')
+
+  const handleLocationSearch = async (e) => {
+      const query = e.target.value
+      setSearchQuery(query)
+
+      if(query.length > 2) {
+          try {
+          const response = await fetch(
+              `http://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=5&appid=${props.API_KEY}`
+          )
+
+          const data = await response.json()
+          setSuggestions(data)
+          } catch (error) {
+          console.error('Error fetching locations:', error)
+          }
+      } else {
+          setSuggestions([])
+      } 
+  }
 
   return (
     <div className='weather-box'>
@@ -25,7 +46,18 @@ export default function Weather(props) {
                 <RxCross2 onClick={() => setLocationInput(false)}/>
               </div>
               {suggestions.length > 0 && (
-                
+                <ul className='location-suggestions'>
+                  {suggestions.map((city, index) => (
+                    <li key={index} onClick={() => {
+                      props.onChangeCity(city.name, city.country)
+                      setSearchQuery(city.name)
+                      setSuggestions([])
+                      setLocationInput(false)
+                    }}>
+                      {city.name}, {city.country}
+                    </li>
+                  ))}
+                </ul>
               )}
             </div>
           )}
