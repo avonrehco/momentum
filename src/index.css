@@ -12,43 +12,142 @@ body {
 
 header {
     height: 11vh;
-}
-
-header .nav {
-    margin: 10px 30px 20px 30px;
+    margin: 10px 30px 20px 20px;
     display: flex;
     justify-content: space-between;
 }
 
-header .nav .focus {
+header .focus {
     text-align: center;
     cursor: pointer;
     padding: 10px;
 }
 
-header .nav .nav-icon {
+header .nav-icon {
     font-size: 30px;
 }
 
-header .nav .weather {
+header .weather-icon {
     text-align: right;
     cursor: pointer;
     padding: 10px;
     transition: background-color ease;
 }
 
-header .nav  .weather:hover {
+header .weather-icon:hover {
     background-color: rgba(0, 0, 0, 0.15);
     border-radius: 5px;
 }
 
-header .nav .weather .degrees-icon {
-    display: flex;
+header .weather-icon .degrees-icon {
+    font-size: 20px;
+    display: inline-flex;
     align-items: center;
 }
 
-header .nav .weather .degrees-icon .degrees {
-    padding-left: 5px;
+header .weather-icon .degrees-icon img {
+    width: 45px;
+}
+
+header .weather-icon .city {
+    font-size: 13px;
+    margin-top: -10px;
+}
+
+header .weather-box {
+    background-color: #0f0f0fd9;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    position: absolute;
+    right: 30px;
+    width: 400px;
+}
+
+header .weather-box .weather-header {
+    display: flex;
+    align-items: center;
+    padding: 20px 20px 10px 20px;
+}
+
+header .weather-box .weather-header .btn-geo {
+    margin-left: auto;
+    padding: 15px;
+    cursor: pointer;
+}
+
+header .weather-box .weather-header img{
+    width: 40px;
+}
+
+header .weather-box .weather-header .weather-city {
+    display: inline-flex;
+    align-items: center;
+}
+
+header .weather-box .weather-body {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+header .weather-box .weather-body .weather-desc {
+    font-size: 14px;
+    padding: 0px 30px 0px 30px;
+    color: #a1a39f;
+}
+
+header .weather-box .weather-body .weather-temp {
+    display: inline-flex;
+    align-items: center;
+}
+
+header .weather-box .weather-body .weather-main {
+    display: inline-flex;
+    padding: 0px 35px 0px 20px;
+}
+
+header .weather-box .weather-body .weather-temp img {
+    height: 80px;
+}
+
+header .weather-box .weather-body .weather-temp .temp {
+    font-size: 50px;
+}
+
+header .weather-box .weather-body ul {
+    list-style: none;
+    font-size: 13px;
+}
+
+header .weather-box .weather-body ul span:nth-child(odd) {
+    color: #a1a39f;
+    padding-right: 5px;
+}
+
+header .weather-box .weather-body .weather-footer {
+    padding: 10px 30px 15px 20px;
+    border-top: solid #343333 1.5px;
+    text-align: end;
+    font-size: 10px;
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+header .weather-box .weather-body .weather-footer a {
+    cursor: pointer;
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    transition: background-color ease;
+}
+
+header .weather-box .weather-body .weather-footer a:hover {
+    background-color: #343333;
+}
+
+header .weather-box .weather-body .weather-footer .logo-openweather {
+    padding: 5px 10px 5px 10px;
+    color: #a1a39f8f;
+    font-weight: 600;
 }
 
 clock {
@@ -185,7 +284,7 @@ clock .date {
 
 footer {
     height: 8vh;
-    margin: 10px 20px 20px 20px;
+    margin: 10px 20px 20px 30px;
     
     display: grid;
     grid-template-columns: 65px auto 83px;
